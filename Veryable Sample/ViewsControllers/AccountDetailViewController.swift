@@ -10,13 +10,36 @@ import UIKit
 
 class AccountDetailViewController: UIViewController {
 
+    @IBOutlet weak var imgAccount: UIImageView!
+    @IBOutlet weak var lblAccountName: UILabel!
+    @IBOutlet weak var lblAccountType: UILabel!
+    @IBOutlet weak var btnDone: UIButton!
+    
+    var selectedAccount:Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = "DETAILS"
+        navigationItem.backButtonTitle = " "
+        if(Accounts.accounts[selectedAccount].accountType.rawValue == "bank"){
+            imgAccount.image = UIImage(named: "bank")
+        }else{
+            imgAccount.image = UIImage(named: "card")
+        }
+        
+        lblAccountName.text = Accounts.accounts[selectedAccount].accountName
+        lblAccountType.text = Accounts.accounts[selectedAccount].desc
+        view.backgroundColor = ViewColor.background.color
+        imgAccount.tintColor = VBlue.dark.color
+        btnDone.backgroundColor = VBlue.dark.color
+        
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func doneClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -10,81 +10,107 @@ import UIKit
 
 class AccountListTableViewController: UITableViewController {
 
+    @IBOutlet var tblAcoounts: UITableView!
+    
+    var selectedAccount : Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableInit()
+        tblAcoounts.reloadData()
+        self.navigationItem.title = "ACCOUNTS"
+        view.backgroundColor = ViewColor.background.color
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tblAcoounts.reloadData()
+    }
+    func tableInit(){
+        let urlString1 = "https://veryable-public-assets.s3.us-east-2.amazonaws.com/veryable.json"
 
+        let urlBuilder1 = URLComponents(string: urlString1)
+
+        let url1 = urlBuilder1?.url
+        var request1 = URLRequest(url: url1!)
+        request1.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request1){(data,response,error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            do{
+                let newData = try JSONDecoder().decode(accs.self, from: data!)
+                
+                DispatchQueue.main.async {
+                        do {
+                            Accounts.accounts = newData;
+                            self.tblAcoounts.reloadData()
+                            
+                        }catch{
+                            print(error)
+                        }
+                }
+            }
+            catch let parsingError{
+                print(parsingError)
+            }
+        }.resume()
+    }
+    
+    
+    
+    
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        //print(Accounts.accounts.count)
+        return Accounts.accounts.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellAccount", for: indexPath) as! AccountTableViewCell
+        
+        cell.lblType.text = Accounts.accounts[indexPath.row].accountName
+        cell.lblName.text = Accounts.accounts[indexPath.row].desc
+        //cell.lblName.text = Accounts.accounts[indexPath.row].desc
+        cell.backgroundColor = ViewColor.background.color
+        if(Accounts.accounts[indexPath.row].accountType.rawValue == "bank"){
+            cell.lblNumber.text = "Bank Account: ACH - Same Day"
+            cell.imgAccount?.image = UIImage(named: "bank")
+            //cell.imgAccount?.image?.withTintColor("")
+        }else{
+            cell.lblNumber.text = "Card: Instant"
+            cell.imgAccount?.image = UIImage(named: "card")
+        }
+        
+        cell.imgAccount.tintColor = VBlue.dark.color
 
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedAccount = indexPath.row
+        performSegue(withIdentifier: "details", sender: nil)
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
+        let destinationVC = segue.destination as! AccountDetailViewController
+        destinationVC.selectedAccount = selectedAccount
+        let backItem = UIBarButtonItem()
+        backItem.title = " "
+        backItem.tintColor = UIColor.black
+        navigationItem.backBarButtonItem = backItem
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class Accounts{
+    static var accounts = [AccountElement]()
+    //var selectedAccount = AccountElement
+}

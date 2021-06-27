@@ -18,6 +18,12 @@
 		6A948AFB265FF403005A22DA /* VryPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A948AF6265FF403005A22DA /* VryPallete.swift */; };
 		6A948AFF265FF490005A22DA /* UIFont+Vry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A948AFE265FF490005A22DA /* UIFont+Vry.swift */; };
 		6A948B01265FF5CA005A22DA /* ViewColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A948B00265FF5CA005A22DA /* ViewColor.swift */; };
+		F3D9C20C2687E069002F0975 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D9C20B2687E069002F0975 /* main.storyboard */; };
+		F3D9C2102687E2DE002F0975 /* AccountListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C20F2687E2DE002F0975 /* AccountListTableViewController.swift */; };
+		F3D9C2132687E2F7002F0975 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C2122687E2F7002F0975 /* AccountTableViewCell.swift */; };
+		F3D9C2182687E3B6002F0975 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C2172687E3B6002F0975 /* AccountData.swift */; };
+		F3D9C21D2687E4C2002F0975 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C21C2687E4C2002F0975 /* Accounts.swift */; };
+		F3D9C2202687FABA002F0975 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C21F2687FABA002F0975 /* AccountDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +42,12 @@
 		6A948B00265FF5CA005A22DA /* ViewColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewColor.swift; sourceTree = "<group>"; };
 		B65FE61971F35C89FD901862 /* Pods-Veryable Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Veryable Sample.release.xcconfig"; path = "Target Support Files/Pods-Veryable Sample/Pods-Veryable Sample.release.xcconfig"; sourceTree = "<group>"; };
 		CDFCC6589E8234DDBAFB6174 /* Pods_Veryable_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Veryable_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3D9C20B2687E069002F0975 /* main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
+		F3D9C20F2687E2DE002F0975 /* AccountListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListTableViewController.swift; sourceTree = "<group>"; };
+		F3D9C2122687E2F7002F0975 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		F3D9C2172687E3B6002F0975 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
+		F3D9C21C2687E4C2002F0975 /* Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
+		F3D9C21F2687FABA002F0975 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,12 +83,14 @@
 		515EC6B1242E5FBA00B21DBB /* Veryable Sample */ = {
 			isa = PBXGroup;
 			children = (
+				F3D9C20A2687E04C002F0975 /* ViewsControllers */,
 				515EC6B2242E5FBA00B21DBB /* AppDelegate.swift */,
 				6A948ADF265FEEA0005A22DA /* Features */,
 				6A948AE9265FEFEF005A22DA /* Repositories */,
 				6A948AE8265FEFE2005A22DA /* Models */,
 				6A948AFC265FF473005A22DA /* VryCustom */,
 				6A948AEA265FF01C005A22DA /* Resources */,
+				F3D9C20B2687E069002F0975 /* main.storyboard */,
 			);
 			path = "Veryable Sample";
 			sourceTree = "<group>";
@@ -175,6 +189,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F3D9C20A2687E04C002F0975 /* ViewsControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F3D9C20F2687E2DE002F0975 /* AccountListTableViewController.swift */,
+				F3D9C2122687E2F7002F0975 /* AccountTableViewCell.swift */,
+				F3D9C2172687E3B6002F0975 /* AccountData.swift */,
+				F3D9C21C2687E4C2002F0975 /* Accounts.swift */,
+				F3D9C21F2687FABA002F0975 /* AccountDetailViewController.swift */,
+			);
+			path = ViewsControllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -236,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				515EC6BC242E5FBC00B21DBB /* Assets.xcassets in Resources */,
+				F3D9C20C2687E069002F0975 /* main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,8 +320,13 @@
 				6A948AE5265FEFCB005A22DA /* AccountListViewController.swift in Sources */,
 				6A948B01265FF5CA005A22DA /* ViewColor.swift in Sources */,
 				6A948AEE265FF0E5005A22DA /* Account.swift in Sources */,
+				F3D9C2132687E2F7002F0975 /* AccountTableViewCell.swift in Sources */,
 				6A948AFF265FF490005A22DA /* UIFont+Vry.swift in Sources */,
+				F3D9C2202687FABA002F0975 /* AccountDetailViewController.swift in Sources */,
+				F3D9C2182687E3B6002F0975 /* AccountData.swift in Sources */,
 				6A948AE7265FEFDB005A22DA /* AccountListView.swift in Sources */,
+				F3D9C21D2687E4C2002F0975 /* Accounts.swift in Sources */,
+				F3D9C2102687E2DE002F0975 /* AccountListTableViewController.swift in Sources */,
 				6A948AEC265FF0A2005A22DA /* AccountRepo.swift in Sources */,
 				6A948AFB265FF403005A22DA /* VryPallete.swift in Sources */,
 			);
